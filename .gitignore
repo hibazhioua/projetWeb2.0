@@ -1,0 +1,16 @@
+# Django databases
+*.sqlite3
+db.sqlite3
+
+# Python bytecode and cache
+__pycache__/
+*.py[oc]
+.pytest_cache/
+
+# Build and environment artifacts
+build/
+dist/
+wheels/
+*.egg-info
+.venv
+.venv/
