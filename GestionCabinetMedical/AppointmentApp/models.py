@@ -32,7 +32,7 @@ class Appointment(models.Model):
         default=Status.PENDING,
     )
     duration_minutes = models.PositiveIntegerField(default=30)
-    appointment_date = models.DateTimeField()
+    appointment_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -59,7 +59,7 @@ class Appointment(models.Model):
             )
             date_changed = old_date != self.appointment_date
 
-        if date_changed and self.appointment_date <= timezone.now():
+        if date_changed and self.appointment_date <= timezone.localdate():
             raise ValidationError(
                 {
                     'appointment_date': (
@@ -70,4 +70,4 @@ class Appointment(models.Model):
             )
 
     def __str__(self):
-        return f"RDV {self.doctor} - {self.patient} ({self.appointment_date})"
+        return f'{self.reason}'
